@@ -1,0 +1,12 @@
+openai
+anthropic
+requests
+aiohttp
+flask
+flask-cors
+rich
+click
+python-dotenv
+pytest
+black
+flake8
