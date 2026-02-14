@@ -1,31 +1,39 @@
-# Makefile
+.PHONY: help install install-dev test lint format clean run
 
-.PHONY: install install-dev test lint format clean run
+help:
+	@echo "Comandos disponibles:"
+	@echo "  make install      - Instalar dependencias"
+	@echo "  make install-dev  - Instalar + dev tools"
+	@echo "  make test         - Ejecutar tests"
+	@echo "  make lint         - Verificar código"
+	@echo "  make format       - Formatear código"
+	@echo "  make clean        - Limpiar archivos temporales"
+	@echo "  make run          - Ejecutar aplicación"
 
 install:
-\t# Commands for installing the application
-\techo "Installing the application..."
+	pip install -r requirements.txt
 
 install-dev:
-\t# Commands for installing the development dependencies
-\techo "Installing development dependencies..."
+	pip install -r requirements.txt
+	pip install black flake8 pylint pytest pytest-cov
 
 test:
-\t# Commands for running tests
-\techo "Running tests..."
+	pytest tests/ -v --cov=src
 
 lint:
-\t# Commands for linting the code
-\techo "Linting the code..."
+	flake8 src/
+	pylint src/
 
 format:
-\t# Commands for formatting the code
-\techo "Formatting the code..."
+	black src/ tests/
 
 clean:
-\t# Commands for cleaning the build
-\techo "Cleaning up..."
+	find . -type d -name __pycache__ -exec rm -rf {} +
+	find . -type f -name "*.pyc" -delete
+	rm -rf .pytest_cache/ .coverage htmlcov/
 
 run:
-\t# Commands for running the application
-\techo "Running the application..."
+	python src/bugbounty_ia/main.py
+
+dev-setup: install-dev
+	@echo "✅ Entorno de desarrollo configurado"

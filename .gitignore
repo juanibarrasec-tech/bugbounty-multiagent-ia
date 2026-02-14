@@ -1,31 +1,47 @@
-# Python Specific .gitignore
-
-# Virtual Environments
-.env/
-.venv/
-venv/
-ENV/
-env/
-
-# Python Cache Files
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
+*$py.class
 
-# IDE Settings
-.idea/
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
 .vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Environment Variables
-*.env
+# Environment variables
+.env
+.env.local
+.env.*.local
 
-# Databases
+# Database
+*.db
+*.sqlite
 *.sqlite3
-.db/
 
 # Logs
 *.log
+logs/
 
-# Distribution / packaging
-*.egg-info/
-builds/
+# OS
+.DS_Store
+Thumbs.db
+
+# Project specific
+results_*/
+reports/
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Distribution
+build/
 dist/
+*.egg-info/

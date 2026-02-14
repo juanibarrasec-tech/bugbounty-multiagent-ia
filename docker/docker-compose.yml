@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  bugbounty-ia:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    environment:
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - DATABASE_PATH=/data/bugbounty_results.db
+    volumes:
+      - ./results:/app/results
+      - ./data:/data
+      - .env:/app/.env
+    ports:
+      - "5000:5000"
+    restart: unless-stopped
